@@ -29,4 +29,7 @@ Fill-in details and place in either:
 
 - Delete workflows that you don't need
 - Update workflows with Xcode project names and schemes
-- Setup Danger: add a secret in repo settings called `DANGER_GITHUB_API_TOKEN`
+- Setup Danger
+    - See: [Getting Set Up](https://danger.systems/guides/getting_started.html)
+    - Create a bot and [add a personal access token](https://github.com/settings/tokens/new) with `public_repo` scope
+    - Add a secret in your repo settings called `DANGER_GITHUB_API_TOKEN`
