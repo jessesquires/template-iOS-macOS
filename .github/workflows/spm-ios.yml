@@ -15,7 +15,6 @@ env:
   IOS_SDK: iphonesimulator13.4
 
 jobs:
-
   job-build:
     name: SwiftPM Build
     runs-on: macOS-latest
@@ -26,10 +25,15 @@ jobs:
       - name: xcode version
         run: xcodebuild -version -sdk
 
-      - name: SPM generate xcodeproj
+      - name: list simulators
+        run: |
+          xcrun simctl delete unavailable
+          xcrun simctl list
+
+      - name: generate xcodeproj
         run: swift package generate-xcodeproj
 
-      - name: Test
+      - name: Build
         run: |
           set -o pipefail
           xcodebuild clean build -scheme "$SCHEME" -sdk "$IOS_SDK" -destination 'name=iPhone 11' | xcpretty -c
