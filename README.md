@@ -8,19 +8,20 @@ This repo contains default project files for iOS and macOS projects.
 
 ## Instructions
 
-#### README template
+#### Templates
 
-Copy the `README-template.md` to `README.md` and fill-in.
+- Copy the `README-template.md` to `README.md` and fill-in details.
+- Rename `PROJECT.podspec`, fill-in details.
 
 #### SwiftLint
 
 Add build phase script in Xcode project: `"${SRCROOT}/scripts/lint.sh"`
 
-#### Header comment template
+#### Xcode header comments
 
 `IDETemplateMacros.plist` is used to [customize Xcode header comments](https://oleb.net/blog/2017/07/xcode-9-text-macros/).
 
-Must be placed in either:
+Fill-in details and place in either:
 - `<PROJECT_NAME>.xcodeproj/xcshareddata/IDETemplateMacros.plist`
 - `<WORKSPACE_NAME>.xcworkspace/xcshareddata/IDETemplateMacros.plist`
 
