@@ -12,6 +12,7 @@ This repo contains default project files for iOS and macOS projects.
 
 - Copy the `README-template.md` to `README.md` and fill-in details.
 - Rename `PROJECT.podspec`, fill-in details.
+- Fill-in details for `Package.swift`
 
 #### SwiftLint
 
