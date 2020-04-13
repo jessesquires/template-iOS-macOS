@@ -34,7 +34,7 @@ Add `PROJECT` to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/jessesquires/PROJECT", from: "1.0.0")
+    .package(url: "https://github.com/jessesquires/PROJECT.git", from: "1.0.0")
 ]
 ```
 
