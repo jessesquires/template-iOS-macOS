@@ -18,7 +18,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "jessesquires",
+    name: "PROJECT",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_15)
