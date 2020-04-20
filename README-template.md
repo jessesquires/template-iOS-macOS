@@ -26,6 +26,9 @@
 
 ````ruby
 pod 'PROJECT', '~> 1.0.0'
+
+# develop branch
+pod 'PROJECT', :git => 'https://github.com/jessesquires/PROJECT.git', :branch => 'develop'
 ````
 
 ### [Swift Package Manager](https://swift.org/package-manager/)
