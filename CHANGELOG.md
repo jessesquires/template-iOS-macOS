@@ -1,4 +1,4 @@
-# CHANGELOG
+# Changelog
 
 The changelog for `PROJECT`. Also see the [releases](https://github.com/jessesquires/PROJECT/releases) on GitHub.
 
