@@ -13,8 +13,12 @@ on:
       - develop
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_11.4.1.app/Contents/Developer
-  IOS_SDK: iphonesimulator13.4
+  DEVELOPER_DIR: /Applications/Xcode_11.5.app/Contents/Developer
+
+  IOS_SDK: iphonesimulator13.5
+  TVOS_SDK: appletvsimulator13.4
+  WATCHOS_SDK: watchsimulator6.2
+  MACOS_SDK: macosx10.15
 
   PROJECT: PROJECT.xcodeproj
   SCHEME: PROJECT
@@ -22,18 +26,15 @@ env:
   EXAMPLE_PROJECT: Example/ExampleApp.xcodeproj
   EXAMPLE_SCHEME: ExampleApp
 
-jobs:
-  job-build-test:
-    name: Build and Test
-    runs-on: macOS-latest
-    strategy:
-      matrix:
-        destination: [
-          "OS=11.1,name=iPhone X",
-          "OS=12.0,name=iPhone XS",
-          "OS=13.4.1,name=iPhone 11"
-        ]
+  IOS_DEST: "OS=13.5,name=iPhone 11"
+  TVOS_DEST: "OS=13.4,name=Apple TV"
+  WATCHOS_DEST: "OS=6.2.1,name=Apple Watch Series 5 - 44mm"
+  MACOS_DEST: "arch=x86_64"
 
+jobs:
+  job-iOS:
+    name: iOS test
+    runs-on: macOS-latest
     steps:
       - name: git checkout
         uses: actions/checkout@v1
@@ -46,12 +47,6 @@ jobs:
           xcrun simctl delete unavailable
           xcrun simctl list
 
-      - name: install simulators
-        run: |
-          gem install xcode-install
-          xcversion simulators --install='iOS 11.1'
-          xcversion simulators --install='iOS 12.0'
-
       - name: unit tests
         run: |
           set -o pipefail
@@ -59,8 +54,66 @@ jobs:
               -project "$PROJECT" \
               -scheme "$SCHEME" \
               -sdk "$IOS_SDK" \
-              -destination "${{ matrix.destination }}" \
+              -destination "$IOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+
+  job-tvOS:
+    name: tvOS test
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v1
+
+      - name: unit tests
+        run: |
+          set -o pipefail
+          xcodebuild clean test \
+              -project "$PROJECT" \
+              -scheme "$SCHEME" \
+              -sdk "$TVOS_SDK" \
+              -destination "$TVOS_DEST" \
+              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+
+  job-watchOS:
+    name: watchOS build
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v1
+
+      - name: build
+        run: |
+          set -o pipefail
+          xcodebuild clean build \
+              -project "$PROJECT" \
+              -scheme "$SCHEME" \
+              -sdk "$WATCHOS_SDK" \
+              -destination "$WATCHOS_DEST" \
+              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+
+  job-macOS:
+    name: macOS test
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v1
+
+      - name: unit tests
+        run: |
+          set -o pipefail
+          xcodebuild clean test \
+              -project "$PROJECT" \
+              -scheme "$SCHEME" \
+              -sdk "$MACOS_SDK" \
+              -destination "$MACOS_DEST" \
+              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+
+  job-example-proj:
+    name: Example Project Test
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v1
 
       - name: ui tests
         run: |
@@ -69,5 +122,5 @@ jobs:
               -project "$EXAMPLE_PROJECT" \
               -scheme "$EXAMPLE_SCHEME" \
               -sdk "$IOS_SDK" \
-              -destination "${{ matrix.destination }}" \
+              -destination "$IOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c

@@ -13,9 +13,12 @@ on:
       - develop
 
 env:
+  DEVELOPER_DIR: /Applications/Xcode_11.5.app/Contents/Developer
+
+  IOS_SDK: iphonesimulator13.5
+  IOS_DEST: "OS=13.5,name=iPhone 11"
+
   SCHEME: PROJECT
-  DEVELOPER_DIR: /Applications/Xcode_11.4.1.app/Contents/Developer
-  IOS_SDK: iphonesimulator13.4
 
 jobs:
   job-build:
@@ -39,4 +42,4 @@ jobs:
       - name: Build
         run: |
           set -o pipefail
-          xcodebuild clean build -scheme "$SCHEME" -sdk "$IOS_SDK" -destination 'name=iPhone 11' | xcpretty -c
+          xcodebuild clean build -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "$IOS_DEST" | xcpretty -c

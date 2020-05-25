@@ -13,18 +13,18 @@ on:
       - develop
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_11.4.1.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_11.5.app/Contents/Developer
   MACOS_SDK: macosx10.15
 
   PROJECT: PROJECT.xcodeproj
   SCHEME: PROJECT
 
-  EXAMPLE_PROJ: Example/ExampleApp.xcodeproj
+  EXAMPLE_PROJECT: Example/ExampleApp.xcodeproj
   EXAMPLE_SCHEME: ExampleApp
 
 jobs:
   job-build-test:
-    name: Build and Test
+    name: unit tests
     runs-on: macOS-latest
     steps:
       - name: git checkout
@@ -47,7 +47,7 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild clean test \
-              -project "$EXAMPLE_PROJ" \
+              -project "$EXAMPLE_PROJECT" \
               -scheme "$EXAMPLE_SCHEME" \
               -sdk "$MACOS_SDK" \
               -destination "arch=x86_64" \
