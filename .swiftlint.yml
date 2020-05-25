@@ -48,7 +48,6 @@ opt_in_rules:
   - toggle_bool
   - unavailable_function
   - no_space_in_method_call
-  - unavailable_function
 
   # style
   - attributes
