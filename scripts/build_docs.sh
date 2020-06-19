@@ -9,7 +9,7 @@
 #  https://github.com/realm/jazzy/releases/latest
 #  ------------------------------
 
-VERSION="0.13.3"
+VERSION="0.13.4"
 
 FOUND=$(jazzy --version)
 LINK="https://github.com/realm/jazzy"
