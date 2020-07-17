@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 #  Created by Jesse Squires
 #  https://www.jessesquires.com
