@@ -9,7 +9,7 @@
 #  https://github.com/realm/SwiftLint/releases/latest
 #  ------------------------------
 
-VERSION="0.39.2"
+VERSION="0.40.0"
 
 FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"
