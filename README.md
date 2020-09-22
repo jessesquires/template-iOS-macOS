@@ -16,7 +16,7 @@ This repo contains default project files for iOS and macOS projects.
 
 ### SwiftLint
 
-Add build phase script in Xcode project: `"${SRCROOT}/scripts/lint.sh"`
+Add build phase script in Xcode project: `"${SRCROOT}/scripts/lint.zsh"` for (`/bin/zsh` shell)
 
 ### Xcode header comments
 
@@ -28,7 +28,7 @@ Fill-in details and place in either:
 
 ### GitHub Actions
 
-[Software installed on macOS GitHub-hosted runners](https://github.com/actions/virtual-environments/blob/master/images/macos/macos-10.15-Readme.md)
+[Software installed on macOS GitHub-hosted runners](https://github.com/actions/virtual-environments/tree/main/images/macos)
 
 - Delete workflows that you don't need
 - Update workflows with Xcode project names and schemes
