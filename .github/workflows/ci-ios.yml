@@ -40,7 +40,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: xcode version
         run: xcodebuild -version -sdk
@@ -65,7 +65,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: unit tests
         run: |
@@ -82,7 +82,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: build
         run: |
@@ -99,7 +99,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: unit tests
         run: |
@@ -116,7 +116,7 @@ jobs:
     runs-on: macOS-latest
     steps:
       - name: git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: ui tests
         run: |
