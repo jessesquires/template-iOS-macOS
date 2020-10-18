@@ -14,10 +14,10 @@
 
 ## Requirements
 
-- iOS 12+
+- iOS 13+
 - macOS 10.14+
-- Swift 5.2+
-- Xcode 11.4+
+- Swift 5.3+
+- Xcode 12.0+
 - [SwiftLint](https://github.com/realm/SwiftLint)
 
 ## Installation
@@ -26,14 +26,9 @@
 
 ````ruby
 pod 'PROJECT', '~> 1.0.0'
-
-# develop branch
-pod 'PROJECT', :git => 'https://github.com/jessesquires/PROJECT.git', :branch => 'develop'
 ````
 
 ### [Swift Package Manager](https://swift.org/package-manager/)
-
-Add `PROJECT` to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
@@ -51,10 +46,10 @@ You can read the [documentation here](https://jessesquires.github.io/PROJECT). G
 
 Interested in making contributions to this project? Please review the guides below.
 
-- [Contributing Guidelines](https://github.com/jessesquires/.github/blob/master/CONTRIBUTING.md)
-- [Code of Conduct](https://github.com/jessesquires/.github/blob/master/CODE_OF_CONDUCT.md)
-- [Support and Help](https://github.com/jessesquires/.github/blob/master/SUPPORT.md)
-- [Security Policy](https://github.com/jessesquires/.github/blob/master/SECURITY.md)
+- [Contributing Guidelines](https://github.com/jessesquires/.github/blob/main/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/jessesquires/.github/blob/main/CODE_OF_CONDUCT.md)
+- [Support and Help](https://github.com/jessesquires/.github/blob/main/SUPPORT.md)
+- [Security Policy](https://github.com/jessesquires/.github/blob/main/SECURITY.md)
 
 Also, consider [sponsoring this project](https://www.jessesquires.com/sponsor/) or [buying my apps](https://www.hexedbits.com)! ✌️
 
