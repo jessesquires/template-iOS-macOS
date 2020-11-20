@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods', '~> 1.9'
+gem 'cocoapods', '~> 1.10'
+gem 'synx'
 
 # ------------
 # Danger Setup
@@ -11,7 +12,6 @@ gem 'danger'
 gem 'danger-auto_label'
 
 # general
-gem 'danger-todoist'
 gem 'danger-prose'
 
 # xcode, ios, macos
