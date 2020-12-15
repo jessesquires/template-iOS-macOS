@@ -6,7 +6,7 @@ gem 'synx'
 # ------------
 # Danger Setup
 # ------------
-gem 'danger'
+gem 'danger', '~> 8.0'
 
 # github
 gem 'danger-auto_label'
