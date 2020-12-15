@@ -1,6 +1,10 @@
 # macOS
 .DS_Store
 
+# ruby tools
+.bundle/
+vendor/
+
 # jazzy docs
 docs/docsets/
 
