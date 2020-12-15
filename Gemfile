@@ -15,10 +15,7 @@ gem 'danger-auto_label'
 gem 'danger-prose'
 
 # xcode, ios, macos
-gem 'danger-xcov'
-
 gem 'danger-swiftlint'
-
 gem 'danger-jazzy'
 gem 'jazzy'
 
