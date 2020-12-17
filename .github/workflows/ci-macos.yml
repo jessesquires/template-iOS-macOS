@@ -16,8 +16,8 @@ on:
 
 env:
   # https://github.com/actions/virtual-environments/tree/main/images/macos
-  DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
-  MACOS_SDK: macosx11.0
+  DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
+  MACOS_SDK: macosx11.1
 
   PROJECT: PROJECT.xcodeproj
   SCHEME: PROJECT
