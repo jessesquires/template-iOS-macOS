@@ -47,16 +47,16 @@ format:
 
 .PHONY: lint
 lint:
-    ./Pods/SwiftLint/swiftlint autocorrect
+    swiftlint autocorrect --config ./.swiftlint.yml
 
 .PHONY: xcodeproj
 xcodeproj:
-    bundle exec synx RxSaver.xcodeproj
+    bundle exec synx PROJECT.xcodeproj
 
 # == Utility ==
 .PHONY: open
 open:
-    open RxSaver.xcworkspace
+    open PROJECT.xcworkspace
 
 .PHONY: clean
 clean:
@@ -79,5 +79,5 @@ help:
     @echo "  lint              - Runs SwiftLint and autocorrects violations when possible."
     @echo "  clean             - Deletes CocoaPods and bundler setup to start fresh."
     @echo ""
-    @echo "  open              - Opens RxSaver.xcworkspace"
+    @echo "  open              - Opens project in Xcode."
     @echo ""
