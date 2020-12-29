@@ -1,8 +1,17 @@
-# Targets are the format <product>: <dependencies>
-# Product on the left must be re-built if dependency on the right changes
+#  Created by Jesse Squires
+#  https://www.jessesquires.com
+#
+#  Copyright © 2020-present Jesse Squires
+#
+#  ------------------------------
+#  Makefile for building project and performing various tasks.
+#  Targets are the format <product>: <dependencies>
+#  Product on the left must be re-built if dependency on the right changes
 
+PROJECT_NAME = PROJECT
 SELF_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
+# == Default target ==
 .DEFAULT: install
 
 # == Main ==
@@ -51,12 +60,12 @@ lint:
 
 .PHONY: xcodeproj
 xcodeproj:
-	bundle exec synx PROJECT.xcodeproj
+	bundle exec synx $(PROJECT_NAME).xcodeproj
 
 # == Utility ==
 .PHONY: open
 open:
-	open PROJECT.xcworkspace
+	open $(PROJECT_NAME).xcworkspace
 
 .PHONY: clean
 clean:
@@ -79,5 +88,5 @@ help:
 	@echo "  lint              - Runs SwiftLint and autocorrects violations when possible."
 	@echo "  clean             - Deletes CocoaPods and bundler setup to start fresh."
 	@echo ""
-	@echo "  open              - Opens project in Xcode."
+	@echo "  open              - Opens $(PROJECT_NAME).xcworkspace in Xcode."
 	@echo ""
