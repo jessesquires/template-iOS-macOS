@@ -32,7 +32,7 @@ vendor: .bundle/config Gemfile.lock Gemfile
 
 # == CocoaPods ==
 .PHONY: pods
-pods: pod-helper Pods
+pods: pod-helper pod-install
 
 # Helper target that touches the Podfile if the
 # Manifest.lock is out of sync with the Podfile.lock
@@ -41,8 +41,8 @@ pods: pod-helper Pods
 pod-helper:
 	-diff -q "$(SELF_DIR)Podfile.lock" "$(SELF_DIR)Pods/Manifest.lock" > /dev/null || touch "$(SELF_DIR)Podfile.lock"
 
-Pods: vendor Podfile.lock Podfile
-	bundle exec pod install && touch $@
+pod-install: vendor Podfile.lock Podfile
+	bundle exec pod install && touch Pods
 
 .PHONY: update-pod-specs
 update-pod-specs:
