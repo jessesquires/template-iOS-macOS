@@ -26,9 +26,10 @@ bundle: vendor
 	bundle config --local &> /dev/null
 	bundle config --local path vendor/bundle &> /dev/null
 	bundle config --local disable_shared_gems true &> /dev/null
+	bundle config set --local without 'documentation'
 
 vendor: .bundle/config Gemfile.lock Gemfile
-	bundle install --without=documentation --jobs 4 --retry 3 && touch $@
+	bundle install --jobs 4 --retry 3 && touch vendor
 
 # == CocoaPods ==
 .PHONY: pods
