@@ -4,11 +4,10 @@ excluded:
   - build
   - scripts
   - swiftpm
+  - .bundle
+  - vendor
 
 disabled_rules:
-  # metrics
-  - nesting
-
   # lint
   - notification_center_detachment
   - weak_delegate
@@ -68,6 +67,7 @@ opt_in_rules:
 
   # lint
   - overridden_super_call
+  - override_in_extension
   - yoda_condition
   - anyobject_protocol
   - array_init
@@ -84,10 +84,15 @@ line_length: 200
 file_length: 600
 
 type_body_length: 500
-
 function_body_length: 250
 
-cyclomatic_complexity: 15
+cyclomatic_complexity: 10
+
+nesting:
+  type_level: 2
+  function_level: 2
+  check_nesting_in_closures_and_statements: true
+  always_allow_one_type_in_functions: false
 
 type_contents_order:
   order:
