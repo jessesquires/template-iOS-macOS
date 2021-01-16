@@ -3,16 +3,12 @@ name: CI
 on:
   push:
     branches:
-      - master
       - main
       - dev
-      - develop
   pull_request:
     branches:
-      - master
       - main
       - dev
-      - develop
 
 env:
   # https://github.com/actions/virtual-environments/tree/main/images/macos
@@ -35,13 +31,10 @@ env:
   MACOS_DEST: "arch=x86_64"
 
 jobs:
-  job-iOS:
-    name: iOS test
+  env-details:
+    name: Environment details
     runs-on: macOS-latest
     steps:
-      - name: git checkout
-        uses: actions/checkout@v2
-
       - name: xcode version
         run: xcodebuild -version -sdk
 
@@ -49,6 +42,13 @@ jobs:
         run: |
           xcrun simctl delete unavailable
           xcrun simctl list
+
+  test-iOS:
+    name: iOS unit test
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
 
       - name: unit tests
         run: |
@@ -60,8 +60,8 @@ jobs:
               -destination "$IOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
-  job-tvOS:
-    name: tvOS test
+  test-tvOS:
+    name: tvOS unit test
     runs-on: macOS-latest
     steps:
       - name: git checkout
@@ -77,7 +77,7 @@ jobs:
               -destination "$TVOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
-  job-watchOS:
+  test-watchOS:
     name: watchOS build
     runs-on: macOS-latest
     steps:
@@ -94,8 +94,8 @@ jobs:
               -destination "$WATCHOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
-  job-macOS:
-    name: macOS test
+  test-macOS:
+    name: macOS unit test
     runs-on: macOS-latest
     steps:
       - name: git checkout
@@ -111,8 +111,8 @@ jobs:
               -destination "$MACOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
-  job-example-proj:
-    name: Example Project Test
+  ui-test-iOS:
+    name: iOS UI test (Example Project)
     runs-on: macOS-latest
     steps:
       - name: git checkout
@@ -126,4 +126,21 @@ jobs:
               -scheme "$EXAMPLE_SCHEME" \
               -sdk "$IOS_SDK" \
               -destination "$IOS_DEST" \
+              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  
+  ui-test-macOS:
+    name: macOS UI test (Example Project)
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+
+      - name: ui tests
+        run: |
+          set -o pipefail
+          xcodebuild clean test \
+              -project "$EXAMPLE_PROJECT" \
+              -scheme "$EXAMPLE_SCHEME" \
+              -sdk "$MACOS_SDK" \
+              -destination "$MACOS_DEST" \
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c

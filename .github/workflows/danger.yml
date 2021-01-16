@@ -9,7 +9,7 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
 
 jobs:
-  job-danger:
+  main:
     name: Review, Lint, Verify
     runs-on: macOS-latest
     steps:

@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+env:
+  # https://github.com/actions/virtual-environments/tree/main/images/macos
+  DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
+
+  IOS_SDK: iphonesimulator14.3
+  MACOS_SDK: macosx11.1
+
+  WORKSPACE: PROJECT.xcworkspace
+  SCHEME: PROJECT
+  SCHEME_UNIT_TEST: PROJECT_UNIT
+  SCHEME_UI_TEST: PROJECT_UI
+
+  IOS_DEST: "OS=14.3,name=iPhone 12 Mini"
+  MACOS_DEST: "arch=x86_64"
+
+jobs:
+  main:
+    name: Build and Test
+    runs-on: macOS-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+
+      - name: xcode version
+        run: xcodebuild -version -sdk
+
+      - name: list simulators
+        run: |
+          xcrun simctl delete unavailable
+          xcrun simctl list
+
+      - name: ruby versions
+        run: |
+          ruby --version
+          gem --version
+          bundler --version
+
+      - name: cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+
+      - name: make
+        run: make
+
+      - name: unit tests
+        run: |
+          set -o pipefail
+          xcodebuild clean test \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME_UNIT_TEST" \
+            -sdk "$IOS_SDK" \
+            -destination "$IOS_DEST" \
+            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+      
+      - name: ui tests
+        run: |
+          set -o pipefail
+          xcodebuild clean test \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME_UI_TEST" \
+            -sdk "$IOS_SDK" \
+            -destination "$IOS_DEST" \
+            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
