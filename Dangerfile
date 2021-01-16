@@ -116,12 +116,6 @@ swiftlint.config_file = './.swiftlint.yml'
 swiftlint.lint_files(inline_mode: true, fail_on_error: true)
 
 # -----------------------------------------------------------------------------
-# Check for duplicate and missed localizable strings
-# -----------------------------------------------------------------------------
-duplicate_localizable_strings.check_localizable_duplicates
-missed_localizable_strings
-
-# -----------------------------------------------------------------------------
 # Jazzy docs - check for new, undocumented symbols
 # -----------------------------------------------------------------------------
 jazzy.check fail: :all
