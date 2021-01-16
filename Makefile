@@ -31,6 +31,11 @@ bundle: vendor
 vendor: .bundle/config Gemfile.lock Gemfile
 	bundle install --jobs 4 --retry 3 && touch vendor
 
+.PHONY: update-bundle
+update-bundle:
+	bundle update --all
+	bundle update --bundler
+
 # == CocoaPods ==
 .PHONY: pods
 pods: pod-helper pod-install
@@ -45,9 +50,10 @@ pod-helper:
 pod-install: vendor Podfile.lock Podfile
 	bundle exec pod install && touch Pods
 
-.PHONY: update-pod-specs
-update-pod-specs:
+.PHONY: update-pods
+update-pods:
 	bundle exec pod repo update
+	bundle exec pod update
 
 # == Linting ==
 .PHONY: format
@@ -74,20 +80,30 @@ clean:
 	rm -rf vendor
 	rm -rf .bundle
 
+.PHONY: update-all
+update-all:
+	make update-pods
+	make update-bundle
+
 # == Help menu and docs ==
 .PHONY: help
 help:
 	@echo "Make options:"
 	@echo ""
-	@echo "  [none]            - Default. Bootstraps entire project setup. (Installs pods, etc.)"
+	@echo "  [none]            - Default. Runs make install."
 	@echo ""
-	@echo "  pods              - Install gems via bundler, install CocoaPods, and run pod install."
-	@echo "  update-pod-specs  - Updates CocoaPods dependencies."
+	@echo "  install           - Bootstraps entire project. (Sets up bundler, installs pods, etc.)"
+	@echo "  clean             - Deletes CocoaPods and Bundler setup to start fresh."
+	@echo ""
+	@echo "  pods              - Installs gems via Bundler, installs CocoaPods, and runs pod install."
+	@echo ""
+	@echo "  update-all        - Updates all dependencies."
+	@echo "  update-pods       - Updates CocoaPods dependencies."
+	@echo "  update-bundle     - Updates Bundler dependencies."
 	@echo ""
 	@echo "  format            - Runs make xcodeproj and make lint."
 	@echo "  xcodeproj         - Verifies and sorts .xcodeproj file using synx."
 	@echo "  lint              - Runs SwiftLint and autocorrects violations when possible."
-	@echo "  clean             - Deletes CocoaPods and bundler setup to start fresh."
 	@echo ""
 	@echo "  open              - Opens $(PROJECT_NAME).xcworkspace in Xcode."
 	@echo ""
