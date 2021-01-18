@@ -13,10 +13,15 @@ on:
 env:
   # https://github.com/actions/virtual-environments/tree/main/images/macos
   DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
+  
   MACOS_SDK: macosx11.1
 
-  PROJECT: PROJECT.xcodeproj
+  WORKSPACE: PROJECT.xcworkspace
   SCHEME: PROJECT
+  SCHEME_UNIT_TEST: PROJECT_UNIT
+  SCHEME_UI_TEST: PROJECT_UI
+
+  MACOS_DEST: "arch=x86_64"
 
 jobs:
   main:
@@ -29,12 +34,22 @@ jobs:
       - name: xcode version
         run: xcodebuild -version -sdk
 
-      - name: test
+      - name: unit tests
         run: |
           set -o pipefail
           xcodebuild clean test \
-            -project "$PROJECT" \
-            -scheme "$SCHEME" \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME_UNIT_TEST" \
             -sdk "$MACOS_SDK" \
-            -destination "arch=x86_64" \
+            -destination "$MACOS_DEST" \
+            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+  
+      - name: ui tests
+        run: |
+          set -o pipefail
+          xcodebuild clean test \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME_UI_TEST" \
+            -sdk "$MACOS_SDK" \
+            -destination "$MACOS_DEST" \
             ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c

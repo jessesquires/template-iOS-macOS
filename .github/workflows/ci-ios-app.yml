@@ -15,7 +15,6 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_12.3.app/Contents/Developer
 
   IOS_SDK: iphonesimulator14.3
-  MACOS_SDK: macosx11.1
 
   WORKSPACE: PROJECT.xcworkspace
   SCHEME: PROJECT
@@ -23,7 +22,6 @@ env:
   SCHEME_UI_TEST: PROJECT_UI
 
   IOS_DEST: "OS=14.3,name=iPhone 12 Mini"
-  MACOS_DEST: "arch=x86_64"
 
 jobs:
   main:
