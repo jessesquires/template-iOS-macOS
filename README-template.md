@@ -61,4 +61,4 @@ Created and maintained by [**Jesse Squires**](https://www.jessesquires.com).
 
 Released under the MIT License. See `LICENSE` for details.
 
-> **Copyright &copy; 2020-present Jesse Squires.**
+> **Copyright &copy; 2021-present Jesse Squires.**

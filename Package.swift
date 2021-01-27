@@ -12,7 +12,7 @@
 //  GitHub
 //  https://github.com/jessesquires/PROJECT
 //
-//  Copyright © 2020-present Jesse Squires
+//  Copyright © 2021-present Jesse Squires
 //
 
 import PackageDescription
