@@ -5,9 +5,7 @@
 #
 #  Copyright © 2020-present Jesse Squires
 #
-#  Synx
-#  https://github.com/venmo/synx
-#  ------------------------------
+#  Synx: https://github.com/venmo/synx
 #  Runs synx to sort project file and verifies that there is no diff.
 #  Intended for running on CI.
 

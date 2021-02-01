@@ -5,9 +5,7 @@
 #
 #  Copyright © 2020-present Jesse Squires
 #
-#  SwiftLint
-#  https://github.com/realm/SwiftLint/releases/latest
-#  ------------------------------
+#  SwiftLint: https://github.com/realm/SwiftLint/releases/latest
 #  Runs SwiftLint and checks for installation.
 
 VERSION="0.42.0"
