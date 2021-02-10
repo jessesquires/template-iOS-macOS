@@ -85,7 +85,7 @@ end
 
 # Prevent editing `Pods/` source directly.
 # If Pods has changed, then Podfile.lock must have changed too.
-has_modified_pods = !(git.added_files + git.modified_files + git.deleted_files).grep(Pods/).empty?
+has_modified_pods = !(git.added_files + git.modified_files + git.deleted_files).grep(/Pods/).empty?
 did_update_podlock = git.modified_files.include?("Podfile.lock")
 if has_modified_pods && !did_update_podlock
   fail("It looks like you are modifying CocoaPods source in `Pods/`. 3rd-party dependencies should not be edited.
