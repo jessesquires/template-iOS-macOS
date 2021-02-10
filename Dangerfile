@@ -65,25 +65,34 @@ def files_changed_as_set(files)
     return all_files_changed || no_files_changed
 end
 
-# Verify proper pod install.
+# Verify correct `pod install`
+pod_locks = ["Podfile.lock", "Pods/Manifest.lock"]
+pod_files = ["Podfile"] + pod_locks
+
 # If Podfile has been modified, so must the lock files.
 did_update_podfile = git.modified_files.include?("Podfile")
-pod_files = ["Podfile", "Podfile.lock", "Pods/Manifest.lock"]
 if did_update_podfile && !files_changed_as_set(pod_files)
     fail("CocoaPods error: #{pod_files} should all be changed at the same time.
         Run `pod install` and commit the changes to fix.")
 end
 
+# Podfile has not been modified. We must be running `pod update`.
+# Only the two lock files must be changed together.
+if !did_update_podfile && !files_changed_as_set(pod_locks)
+    fail("CocoaPods error: #{pod_locks} should all be changed at the same time.
+        Run `pod install` and commit the changes to fix.")
+end
+
 # Prevent editing `Pods/` source directly.
 # If Pods has changed, then Podfile.lock must have changed too.
-has_modified_pods = !(git.added_files + git.modified_files + git.deleted_files).grep(/Pods/).empty?
+has_modified_pods = !(git.added_files + git.modified_files + git.deleted_files).grep(Pods/).empty?
 did_update_podlock = git.modified_files.include?("Podfile.lock")
 if has_modified_pods && !did_update_podlock
   fail("It looks like you are modifying CocoaPods source in `Pods/`. 3rd-party dependencies should not be edited.
         To update or change pods, please update the `Podfile` and run `pod install`.")
 end
 
-# Verify proper bundle install.
+# Verify correct `bundle install`
 # If Gemfile has been modified, so must the lock file.
 did_update_gemfile = git.modified_files.include?("Gemfile")
 gem_files = ["Gemfile", "Gemfile.lock"]
