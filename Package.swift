@@ -36,7 +36,7 @@ let package = Package(
         .testTarget(name: "PROJECT_TESTS",
                     dependencies: ["PROJECT"],
                     path: "Tests",
-                    exclude: ["Info.plist"]),
+                    exclude: ["Info.plist"])
     ],
     swiftLanguageVersions: [.v5]
 )

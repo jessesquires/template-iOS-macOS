@@ -63,7 +63,7 @@ format:
 
 .PHONY: lint
 lint:
-	swiftlint autocorrect --config ./.swiftlint.yml
+	scripts/lint.zsh
 
 .PHONY: xcodeproj
 xcodeproj:
@@ -82,8 +82,8 @@ clean:
 
 .PHONY: update-all
 update-all:
-	make update-pods
 	make update-bundle
+	make update-pods
 
 # == Help menu and docs ==
 .PHONY: help
