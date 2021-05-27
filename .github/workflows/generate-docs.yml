@@ -1,3 +1,6 @@
+# GitHub Actions Virtual Environments
+# https://github.com/actions/virtual-environments/
+
 name: Generate Documentation
 
 on:
@@ -13,7 +16,7 @@ jobs:
 
       - name: install jazzy
         run: gem install jazzy --no-document
-  
+
       - name: generate docs
         run: ./scripts/build_docs.zsh
 
