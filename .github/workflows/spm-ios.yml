@@ -14,7 +14,7 @@ on:
       - dev
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
 
   IOS_SDK: iphonesimulator14.4
   IOS_DEST: "OS=14.4,name=iPhone 12 Mini"
@@ -24,7 +24,7 @@ env:
 jobs:
   main:
     name: SwiftPM Build
-    runs-on: macOS-latest
+    runs-on: macOS-11
     steps:
       - name: git checkout
         uses: actions/checkout@v2
