@@ -1,3 +1,7 @@
+# SwiftLint configuration
+# Rule directory: https://realm.github.io/SwiftLint/rule-directory.html
+# GitHub: https://github.com/realm/SwiftLint
+
 excluded:
   - Pods
   - docs
@@ -76,6 +80,7 @@ analyzer_rules:
   - unused_import
   - unused_declaration
   - explicit_self
+  - capture_variable
 
 line_length: 200
 file_length: 600
