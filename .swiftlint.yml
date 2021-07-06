@@ -96,6 +96,9 @@ nesting:
   check_nesting_in_closures_and_statements: true
   always_allow_one_type_in_functions: false
 
+identifier_name:
+  allowed_symbols: ['_']
+  
 type_contents_order:
   order:
     - associated_type
