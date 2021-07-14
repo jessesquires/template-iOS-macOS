@@ -58,7 +58,7 @@ jobs:
           xcrun simctl list
 
   test-iOS:
-    name: iOS unit test
+    name: iOS unit tests
     runs-on: macOS-11
     steps:
       - name: git checkout
@@ -75,7 +75,7 @@ jobs:
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
   test-tvOS:
-    name: tvOS unit test
+    name: tvOS unit tests
     runs-on: macOS-11
     steps:
       - name: git checkout
@@ -92,13 +92,13 @@ jobs:
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
   test-watchOS:
-    name: watchOS unit test
+    name: watchOS unit tests
     runs-on: macOS-11
     steps:
       - name: git checkout
         uses: actions/checkout@v2
 
-      - name: test
+      - name: unit tests
         run: |
           set -o pipefail
           xcodebuild clean test \
@@ -109,7 +109,7 @@ jobs:
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
   test-macOS:
-    name: macOS unit test
+    name: macOS unit tests
     runs-on: macOS-11
     steps:
       - name: git checkout
@@ -126,7 +126,7 @@ jobs:
               ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
 
   ui-test-iOS:
-    name: iOS UI test
+    name: iOS UI tests
     runs-on: macOS-11
     steps:
       - name: git checkout
