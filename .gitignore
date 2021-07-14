@@ -10,6 +10,7 @@ docs/docsets/
 
 # Xcode
 xcuserdata/
+build/
 
 ## Obj-C/Swift specific
 *.hmap
