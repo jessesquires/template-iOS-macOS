@@ -8,7 +8,8 @@
 #  Targets are the format <product>: <dependencies>
 #  Product on the left must be re-built if dependency on the right changes
 
-PROJECT_NAME = PROJECT
+PROJECT_NAME="MY_APP"
+
 SELF_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
 # == Default target ==
@@ -16,7 +17,7 @@ SELF_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
 # == Main ==
 .PHONY: install
-install: pods
+install: pod-setup
 
 # == Bundler ==
 .PHONY: bundle
@@ -37,8 +38,8 @@ update-bundle:
 	bundle update --bundler
 
 # == CocoaPods ==
-.PHONY: pods
-pods: pod-helper pod-install
+.PHONY: pod-setup
+pod-setup: pod-helper Pods
 
 # Helper target that touches the Podfile if the
 # Manifest.lock is out of sync with the Podfile.lock
@@ -47,8 +48,8 @@ pods: pod-helper pod-install
 pod-helper:
 	-diff -q "$(SELF_DIR)Podfile.lock" "$(SELF_DIR)Pods/Manifest.lock" > /dev/null || touch "$(SELF_DIR)Podfile.lock"
 
-pod-install: vendor Podfile.lock Podfile
-	bundle exec pod install && touch Pods
+Pods: vendor Podfile.lock Podfile
+	bundle exec pod install && touch $@
 
 .PHONY: update-pods
 update-pods:
@@ -95,7 +96,7 @@ help:
 	@echo "  install           - Bootstraps entire project. (Sets up bundler, installs pods, etc.)"
 	@echo "  clean             - Deletes CocoaPods and Bundler setup to start fresh."
 	@echo ""
-	@echo "  pods              - Installs gems via Bundler, installs CocoaPods, and runs pod install."
+	@echo "  pod-setup         - Installs gems via Bundler, installs CocoaPods, and runs pod install."
 	@echo ""
 	@echo "  update-all        - Updates all dependencies."
 	@echo "  update-pods       - Updates CocoaPods dependencies."
