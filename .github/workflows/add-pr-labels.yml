@@ -1,0 +1,34 @@
+# GitHub Actions Virtual Environments
+# https://github.com/actions/virtual-environments/
+
+name: Add PR Labels
+
+on:
+  pull_request:
+    types: [synchronize, opened, reopened, edited, closed]
+
+env:
+  BASE_BRANCH: ${{ github.base_ref }}
+
+jobs:
+  remove-labels:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/actions-ecosystem-remove-labels
+      - name: remove labels
+        uses: actions-ecosystem/action-remove-labels@v1
+        if: env.BASE_BRANCH == 'main'
+        with:
+          github_token: ${{ github.token }}
+          labels: stacked PR
+
+  add-labels:
+    runs-on: ubuntu-latest
+    steps:
+      # https://github.com/marketplace/actions/actions-ecosystem-add-labels
+      - name: add labels
+        uses: actions-ecosystem/action-add-labels@v1
+        if: env.BASE_BRANCH != 'main'
+        with:
+          github_token: ${{ github.token }}
+          labels: stacked PR
