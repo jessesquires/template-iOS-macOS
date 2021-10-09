@@ -1,6 +1,8 @@
 # GitHub Actions Virtual Environments
 # https://github.com/actions/virtual-environments/
 
+# Fails a pull request if it gets labeled as "do not merge"
+
 name: Do Not Merge
 
 on:
