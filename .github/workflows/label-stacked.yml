@@ -1,6 +1,10 @@
 # GitHub Actions Virtual Environments
 # https://github.com/actions/virtual-environments/
 
+# Automatically labels a pull request as "stacked PR" if it is stacked 
+# (i.e., not merging into "main" but into another PR)
+# Removes label automatically once target branch is changed to "main"
+
 name: Label Stacked PRs
 
 on:
