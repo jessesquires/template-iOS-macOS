@@ -28,7 +28,7 @@ Fill-in details and place in either:
 
 ### GitHub Actions
 
-[Software installed on macOS GitHub-hosted runners](https://github.com/actions/virtual-environments/tree/main/images/macos)
+[GitHub Actions Virtual Environments](https://github.com/actions/virtual-environments)
 
 - Delete workflows that you don't need
 - Update workflows with Xcode project names and schemes
@@ -36,3 +36,5 @@ Fill-in details and place in either:
     - See: [Getting Set Up](https://danger.systems/guides/getting_started.html)
     - Create a bot and [add a personal access token](https://github.com/settings/tokens/new) with `public_repo` scope
     - Add a secret in your repo settings called `DANGER_GITHUB_API_TOKEN`
+
+> 💡 **Tip:** see [jessesquires/gh-workflows](https://github.com/jessesquires/gh-workflows) for additional useful workflows.
