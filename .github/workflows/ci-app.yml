@@ -21,12 +21,12 @@ env:
   SCHEME_UNIT_TEST: PROJECT_UNIT
   SCHEME_UI_TEST: PROJECT_UI
 
-  DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_13.1.app/Contents/Developer
 
-  IOS_SDK: iphonesimulator14.5
-  IOS_DEST: "OS=14.5,name=iPhone 12 Mini"
+  IOS_SDK: iphonesimulator15.0
+  IOS_DEST: "OS=15.0,name=iPhone 13 Mini"
 
-  MACOS_SDK: macosx11.3
+  MACOS_SDK: macosx12.0
   MACOS_DEST: "arch=x86_64"
 
 jobs:

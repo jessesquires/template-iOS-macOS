@@ -15,17 +15,12 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - '.github/workflows/spm-ios.yml'
-      - 'Package*'
-      - 'Sources/**/*.*'
-      - 'Tests/**/*.*'
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_12.5.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_13.1.app/Contents/Developer
 
-  IOS_SDK: iphonesimulator14.5
-  IOS_DEST: "OS=14.5,name=iPhone 12 Mini"
+  IOS_SDK: iphonesimulator15.0
+  IOS_DEST: "OS=15.0,name=iPhone 13 Mini"
 
   SCHEME: PROJECT
 
