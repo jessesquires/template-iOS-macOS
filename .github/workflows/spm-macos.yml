@@ -32,3 +32,6 @@ jobs:
 
       - name: swift build
         run: swift build
+        
+      - name: swift test
+        run: swift test
