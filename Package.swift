@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version
 // of Swift required to build this package.
 // ----------------------------------------------------
@@ -18,25 +18,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "PROJECT",
+    name: "PROJECT_NAME",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_15)
     ],
     products: [
         .library(
-            name: "PROJECT",
-            targets: ["PROJECT"])
+            name: "PROJECT_NAME",
+            targets: ["PROJECT_NAME"])
     ],
     targets: [
         .target(
-            name: "PROJECT",
-            path: "Sources",
-            exclude: ["Info.plist"]),
-        .testTarget(name: "PROJECT_TESTS",
-                    dependencies: ["PROJECT"],
-                    path: "Tests",
-                    exclude: ["Info.plist"])
+            name: "PROJECT_NAME",
+            path: "Sources"),
+        .testTarget(name: "PROJECT_NAME_TESTS",
+                    dependencies: ["PROJECT_NAME"],
+                    path: "Tests")
     ],
     swiftLanguageVersions: [.v5]
 )
