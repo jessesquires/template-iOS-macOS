@@ -39,7 +39,7 @@ jobs:
         run: |
           xcrun simctl delete unavailable
           xcrun simctl list
-    
+
       # Only if needed. If repo contains an xcode project, delete it.
       - name: delete xcodeproj
         run: rm -rf PROJECT.xcodeproj
@@ -48,7 +48,7 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild build -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "$IOS_DEST" | xcpretty -c
-          
+
       - name: Test
         run: |
           set -o pipefail
