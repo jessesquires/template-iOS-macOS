@@ -31,11 +31,6 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      # for danger prose-lint
-      - name: python setup
-        run: |
-          echo "/Users/runner/Library/Python/2.7/bin" >> $GITHUB_PATH
-
       - name: jazzy docs
         run: bundle exec jazzy --output docs/
 

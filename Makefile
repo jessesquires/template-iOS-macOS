@@ -75,6 +75,10 @@ xcodeproj:
 open:
 	open $(PROJECT_NAME).xcworkspace
 
+.PHONY: xcodeproj-resolve
+xcodeproj-resolve:
+	bundle exec kintsugi $(PROJECT_NAME).xcodeproj/project.pbxproj
+
 .PHONY: clean
 clean:
 	rm -rf Pods
@@ -91,20 +95,21 @@ update-all:
 help:
 	@echo "Make options:"
 	@echo ""
-	@echo "  [none]            - Default. Runs make install."
+	@echo "  [none]            	- Default. Runs make install."
 	@echo ""
-	@echo "  install           - Bootstraps entire project. (Sets up bundler, installs pods, etc.)"
-	@echo "  clean             - Deletes CocoaPods and Bundler setup to start fresh."
+	@echo "  install           	- Bootstraps entire project. (Sets up bundler, installs pods, etc.)"
+	@echo "  clean             	- Deletes CocoaPods and Bundler setup to start fresh."
 	@echo ""
-	@echo "  pod-setup         - Installs gems via Bundler, installs CocoaPods, and runs pod install."
+	@echo "  pod-setup         	- Installs gems via Bundler, installs CocoaPods, and runs pod install."
+	@echo "  xcodeproj-resolve 	- Runs kintsugi to resolve git conflicts in Xcode project file."
 	@echo ""
-	@echo "  update-all        - Updates all dependencies."
-	@echo "  update-pods       - Updates CocoaPods dependencies."
-	@echo "  update-bundle     - Updates Bundler dependencies."
+	@echo "  update-all        	- Updates all dependencies."
+	@echo "  update-pods       	- Updates CocoaPods dependencies."
+	@echo "  update-bundle     	- Updates Bundler dependencies."
 	@echo ""
-	@echo "  format            - Runs make xcodeproj and make lint."
-	@echo "  xcodeproj         - Verifies and sorts .xcodeproj file using synx."
-	@echo "  lint              - Runs SwiftLint and autocorrects violations when possible."
+	@echo "  format            	- Runs make xcodeproj and make lint."
+	@echo "  xcodeproj         	- Verifies and sorts .xcodeproj file using synx."
+	@echo "  lint              	- Runs SwiftLint and autocorrects violations when possible."
 	@echo ""
-	@echo "  open              - Opens $(PROJECT_NAME).xcworkspace in Xcode."
+	@echo "  open              	- Opens $(PROJECT_NAME).xcworkspace in Xcode."
 	@echo ""
