@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # https://github.com/CocoaPods/CocoaPods
 gem 'cocoapods', '~> 1.0'
 
+# https://github.com/xcpretty/xcpretty
+gem 'xcpretty'
+
 # https://github.com/venmo/synx
 gem 'synx'
 
