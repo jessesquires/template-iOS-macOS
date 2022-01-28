@@ -78,7 +78,7 @@ opt_in_rules:
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:
-  - unused_import
+  # - unused_import
   - unused_declaration
   - explicit_self
   - capture_variable
