@@ -19,8 +19,7 @@ on:
 env:
   DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
 
-  IOS_SDK: iphonesimulator15.2
-  IOS_DEST: "OS=15.2,name=iPhone 13 Mini"
+  IOS_DEST: "platform=iOS Simulator,name=iPhone 13 Mini,OS=latest"
 
   SCHEME: PROJECT
 
@@ -40,16 +39,16 @@ jobs:
           xcrun simctl delete unavailable
           xcrun simctl list
 
-      # Only if needed. If repo contains an xcode project, delete it.
+      # Only if needed. If repo contains an Xcode project, delete it.
       - name: delete xcodeproj
         run: rm -rf PROJECT.xcodeproj
 
       - name: Build
         run: |
           set -o pipefail
-          xcodebuild build -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "$IOS_DEST" | xcpretty -c
+          xcodebuild build -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c
 
       - name: Test
         run: |
           set -o pipefail
-          xcodebuild test -scheme "$SCHEME" -sdk "$IOS_SDK" -destination "$IOS_DEST" | xcpretty -c
+          xcodebuild test -scheme "$SCHEME" -destination "$IOS_DEST" | xcpretty -c

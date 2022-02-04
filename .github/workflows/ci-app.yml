@@ -23,11 +23,8 @@ env:
 
   DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
 
-  IOS_SDK: iphonesimulator15.2
-  IOS_DEST: "OS=15.2,name=iPhone 13 Mini"
-
-  MACOS_SDK: macosx12.1
-  MACOS_DEST: "arch=x86_64"
+  IOS_DEST: "platform=iOS Simulator,name=iPhone 13 Mini,OS=latest"
+  MACOS_DEST: "platform=macOS,arch=x86_64"
 
 jobs:
   env-details:
@@ -71,9 +68,8 @@ jobs:
           xcodebuild clean test \
             -workspace "$WORKSPACE" \
             -scheme "$SCHEME_UNIT_TEST" \
-            -sdk "$IOS_SDK" \
             -destination "$IOS_DEST" \
-            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
 
       - name: iOS ui tests
         run: |
@@ -81,9 +77,8 @@ jobs:
           xcodebuild clean test \
             -workspace "$WORKSPACE" \
             -scheme "$SCHEME_UI_TEST" \
-            -sdk "$IOS_SDK" \
             -destination "$IOS_DEST" \
-            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
 
       - name: macOS unit tests
         run: |
@@ -91,9 +86,8 @@ jobs:
           xcodebuild clean test \
             -workspace "$WORKSPACE" \
             -scheme "$SCHEME_UNIT_TEST" \
-            -sdk "$MACOS_SDK" \
             -destination "$MACOS_DEST" \
-            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
 
       - name: macOS ui tests
         run: |
@@ -101,6 +95,5 @@ jobs:
           xcodebuild clean test \
             -workspace "$WORKSPACE" \
             -scheme "$SCHEME_UI_TEST" \
-            -sdk "$MACOS_SDK" \
             -destination "$MACOS_DEST" \
-            ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO | xcpretty -c
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
