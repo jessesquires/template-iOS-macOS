@@ -1,0 +1,80 @@
+# GitHub Actions Virtual Environments
+# https://github.com/actions/virtual-environments/
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  WORKSPACE: PROJECT.xcworkspace
+  SCHEME: PROJECT
+  SCHEME_UNIT_TEST: UnitTests
+  SCHEME_UI_TEST: UITests
+
+  DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
+
+  MACOS_DEST: "platform=macOS,arch=x86_64"
+
+jobs:
+  env-details:
+    name: Environment Details
+    runs-on: macOS-11
+    steps:
+      - name: xcode version
+        run: xcodebuild -version -sdk
+
+      - name: ruby versions
+        run: |
+          ruby --version
+          gem --version
+          bundler --version
+
+  main:
+    name: Build and Test
+    runs-on: macOS-11
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+
+      # https://github.com/ruby/setup-ruby
+      - name: ruby setup
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
+
+      - name: make
+        run: make
+
+      - name: build
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -destination "$MACOS_DEST" \
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
+
+      - name: unit tests
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME_UNIT_TEST" \
+            -destination "$MACOS_DEST" \
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
+
+      - name: ui tests
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME_UI_TEST" \
+            -destination "$MACOS_DEST" \
+            CODE_SIGN_IDENTITY="-" | bundle exec xcpretty -c
