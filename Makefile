@@ -46,7 +46,7 @@ pod-setup: pod-helper Pods
 # Ignores file system errors such as missing Pods directory on first run
 .PHONY: pod-helper
 pod-helper:
-	-diff -q "$(SELF_DIR)Podfile.lock" "$(SELF_DIR)Pods/Manifest.lock" > /dev/null || touch "$(SELF_DIR)Podfile.lock"
+	-diff -q "$(SELF_DIR)Podfile.lock" "$(SELF_DIR)Pods/Manifest.lock" > /dev/null || touch "$(SELF_DIR)Podfile"
 
 Pods: vendor Podfile.lock Podfile
 	bundle exec pod install && touch $@
