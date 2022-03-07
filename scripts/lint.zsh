@@ -12,7 +12,7 @@
 PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
 
-VERSION="0.46.3"
+VERSION="0.46.4"
 
 FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"
