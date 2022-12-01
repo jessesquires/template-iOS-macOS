@@ -46,6 +46,7 @@ opt_in_rules:
   - discouraged_none_name
   - return_value_from_void_function
   - prefer_zero_over_explicit_init
+  - shorthand_optional_binding
 
   # style
   - attributes
@@ -70,7 +71,6 @@ opt_in_rules:
   - overridden_super_call
   - override_in_extension
   - yoda_condition
-  - anyobject_protocol
   - array_init
   - empty_xctest_method
   - identical_operands
