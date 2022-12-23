@@ -21,7 +21,7 @@ env:
   SCHEME_UNIT_TEST: PROJECT_UNIT
   SCHEME_UI_TEST: PROJECT_UI
 
-  DEVELOPER_DIR: /Applications/Xcode_13.3.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_14.2.app/Contents/Developer
 
   IOS_DEST: "platform=iOS Simulator,name=iPhone 13 Mini,OS=latest"
   MACOS_DEST: "platform=macOS,arch=x86_64"
