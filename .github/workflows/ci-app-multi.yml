@@ -18,10 +18,10 @@ on:
 env:
   WORKSPACE: PROJECT.xcworkspace
 
-  SCHEME_UNIT_IOS: PROJECT-iOS
+  SCHEME_UNIT_IOS: UnitTests-iOS
   SCHEME_UI_IOS: UITests-iOS
 
-  SCHEME_UNIT_MACOS: PROJECT-macOS
+  SCHEME_UNIT_MACOS: UnitTests-macOS
   SCHEME_UI_MACOS: UITests-macOS
 
   DEVELOPER_DIR: /Applications/Xcode_14.2.app/Contents/Developer
