@@ -66,6 +66,8 @@ opt_in_rules:
   - vertical_whitespace_between_cases
   - prefer_self_in_static_references
   - comma_inheritance
+  - direct_return
+  - period_spacing
 
   # lint
   - overridden_super_call
@@ -75,10 +77,10 @@ opt_in_rules:
   - empty_xctest_method
   - identical_operands
   - prohibited_super_call
-  - unused_capture_list
   - duplicate_enum_cases
   - legacy_multiple
   - accessibility_label_for_image
+  - lower_acl_than_parent
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:
