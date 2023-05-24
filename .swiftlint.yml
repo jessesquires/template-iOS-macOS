@@ -47,6 +47,7 @@ opt_in_rules:
   - return_value_from_void_function
   - prefer_zero_over_explicit_init
   - shorthand_optional_binding
+  - xct_specific_matcher
 
   # style
   - attributes
@@ -68,6 +69,8 @@ opt_in_rules:
   - comma_inheritance
   - direct_return
   - period_spacing
+  - superfluous_else
+  - sorted_enum_cases
 
   # lint
   - overridden_super_call
@@ -81,6 +84,7 @@ opt_in_rules:
   - legacy_multiple
   - accessibility_label_for_image
   - lower_acl_than_parent
+  - unhandled_throwing_task
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:
