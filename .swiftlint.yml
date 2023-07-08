@@ -48,6 +48,7 @@ opt_in_rules:
   - prefer_zero_over_explicit_init
   - shorthand_optional_binding
   - xct_specific_matcher
+  - unneeded_synthesized_initializer
 
   # style
   - attributes
