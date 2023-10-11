@@ -72,6 +72,7 @@ opt_in_rules:
   - period_spacing
   - superfluous_else
   - sorted_enum_cases
+  - non_overridable_class_declaration
 
   # lint
   - overridden_super_call
@@ -86,6 +87,7 @@ opt_in_rules:
   - accessibility_label_for_image
   - lower_acl_than_parent
   - unhandled_throwing_task
+  - private_swiftui_state
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:

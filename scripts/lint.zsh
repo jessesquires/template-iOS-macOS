@@ -9,10 +9,12 @@
 #
 #  Runs SwiftLint and checks for installation of correct version.
 
+set -e
+
 PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
 
-VERSION="0.52.4"
+VERSION="0.53.0"
 
 FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"
