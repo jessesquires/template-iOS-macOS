@@ -14,7 +14,7 @@ set -e
 PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
 
-VERSION="0.53.0"
+VERSION="0.54.0"
 
 FOUND=$(swiftlint version)
 LINK="https://github.com/realm/SwiftLint"
