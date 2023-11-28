@@ -10,6 +10,7 @@
 #  Runs SwiftLint and checks for installation of correct version.
 
 set -e
+export PATH="$PATH:/opt/homebrew/bin"
 
 PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
