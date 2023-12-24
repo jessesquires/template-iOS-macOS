@@ -25,9 +25,9 @@ env:
   EXAMPLE_PROJECT: Example/ExampleApp.xcodeproj
   EXAMPLE_SCHEME: ExampleApp
 
-  DEVELOPER_DIR: /Applications/Xcode_14.2.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_15.1.app/Contents/Developer
 
-  IOS_DEST: "platform=iOS Simulator,name=iPhone 13 Mini,OS=latest"
+  IOS_DEST: "platform=iOS Simulator,name=iPhone 15,OS=latest"
   TVOS_DEST: "platform=tvOS Simulator,name=Apple TV,OS=latest"
   WATCHOS_DEST: "platform=watchOS Simulator,name=Apple Watch Series 8 (41mm),OS=latest"
   MACOS_DEST: "platform=macOS,arch=x86_64"
@@ -35,7 +35,7 @@ env:
 jobs:
   env-details:
     name: Environment details
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: xcode version
         run: xcodebuild -version -sdk
@@ -47,7 +47,7 @@ jobs:
 
   test-iOS:
     name: iOS unit tests
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
 
   test-tvOS:
     name: tvOS unit tests
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -79,7 +79,7 @@ jobs:
 
   test-watchOS:
     name: watchOS unit tests
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -95,7 +95,7 @@ jobs:
 
   test-macOS:
     name: macOS unit tests
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -111,7 +111,7 @@ jobs:
 
   ui-test-iOS:
     name: iOS UI tests
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -127,7 +127,7 @@ jobs:
 
   ui-test-macOS:
     name: macOS UI test
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
       - name: git checkout
         uses: actions/checkout@v4
