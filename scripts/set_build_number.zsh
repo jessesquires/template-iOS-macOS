@@ -11,21 +11,25 @@
 echo "Setting build numbers..."
 
 git=$(sh /etc/profile; which git)
-number_of_commits=$("$git" rev-list HEAD --count)
-git_release_version=$("$git" describe --tags --always --abbrev=0)
 
-echo "Commit count: $number_of_commits"
-echo "Tag: $git_release_version"
+number_of_commits=$("$git" rev-list HEAD --count)
+echo "Number of commits: $number_of_commits"
+
+latest_commit_sha=$("$git" rev-parse --short HEAD )
+echo "Latest sha: $latest_commit_sha"
+
+git_release_version=$("$git" describe --tags --always --abbrev=0)
+echo "Latest tag: $git_release_version"
 
 target_plist="$TARGET_BUILD_DIR/$INFOPLIST_PATH"
 dsym_plist="$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist"
 
 for plist in "$target_plist" "$dsym_plist"; do
     if [ -f "$plist" ]; then
-        # set build number to number of commits
-        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $number_of_commits" "$plist"
-        
-        # set version number to git tag
+        # set build number
+        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $number_of_commits-$latest_commit_sha" "$plist"
+
+        # optionally, set version number
         # /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${git_release_version#*v}" "$plist"
     fi
 done
