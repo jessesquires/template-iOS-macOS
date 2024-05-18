@@ -23,6 +23,7 @@ opt_in_rules:
   - contains_over_filter_is_empty
   - empty_collection_literal
   - type_contents_order
+  - final_test_case
 
   # idiomatic
   - fatal_error_message
@@ -49,6 +50,7 @@ opt_in_rules:
   - shorthand_optional_binding
   - xct_specific_matcher
   - unneeded_synthesized_initializer
+  - static_over_final_class
 
   # style
   - attributes
@@ -88,6 +90,7 @@ opt_in_rules:
   - lower_acl_than_parent
   - unhandled_throwing_task
   - private_swiftui_state
+  - non_optional_string_data_conversion
 
 # Rules run by `swiftlint analyze` (experimental)
 analyzer_rules:
