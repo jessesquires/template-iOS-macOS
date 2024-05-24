@@ -24,7 +24,7 @@ env:
   SCHEME_UNIT_MACOS: UnitTests-macOS
   SCHEME_UI_MACOS: UITests-macOS
 
-  DEVELOPER_DIR: /Applications/Xcode_15.1.app/Contents/Developer
+  DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer
 
   IOS_DEST: "platform=iOS Simulator,name=iPhone 15,OS=latest"
   MACOS_DEST: "platform=macOS,arch=x86_64"
@@ -32,7 +32,7 @@ env:
 jobs:
   env-details:
     name: Environment details
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - name: xcode version
         run: xcodebuild -version -sdk
@@ -50,7 +50,7 @@ jobs:
 
   main:
     name: Build and Test
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - name: git checkout
         uses: actions/checkout@v4
