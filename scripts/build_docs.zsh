@@ -8,9 +8,8 @@
 #  Jazzy: https://github.com/realm/jazzy/releases/latest
 #  Generates documentation using jazzy and checks for installation.
 
-VERSION="0.15.2"
+VERSION="0.15.3"
 
-FOUND=$(jazzy --version)
 LINK="https://github.com/realm/jazzy"
 INSTALL="gem install jazzy"
 
@@ -36,6 +35,8 @@ else
     "
     exit 1
 fi
+
+FOUND=$(jazzy --version)
 
 if [ "$FOUND" != "jazzy version: $VERSION" ]; then
     echo "
