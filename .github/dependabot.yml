@@ -1,16 +1,16 @@
 # Documentation for all configuration options:
-# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+# https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference
 
 version: 2
 updates:
-  - package-ecosystem: "bundler"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    labels: []
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    labels: []
+
+  - package-ecosystem: bundler
+    directory: "/"
+    schedule:
+      interval: "monthly"
     labels: []
