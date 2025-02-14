@@ -33,7 +33,7 @@ fi
 PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
 
-VERSION="0.57.1"
+VERSION="0.58.2"
 FOUND=$(swiftlint version)
 CONFIG="./.swiftlint.yml"
 
