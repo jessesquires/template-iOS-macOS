@@ -107,6 +107,8 @@ analyzer_rules:
   - unused_declaration
   - explicit_self
   - capture_variable
+  
+# Configurations
 
 line_length: 200
 file_length: 600
@@ -125,6 +127,9 @@ nesting:
 identifier_name:
   allowed_symbols: ['_']
 
+opening_brace:
+  ignore_multiline_type_headers: true
+  
 type_contents_order:
   order:
     - associated_type
