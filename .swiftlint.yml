@@ -12,6 +12,9 @@ excluded:
   - .bundle
   - vendor
 
+disabled_rules:
+  - trailing_comma
+
 opt_in_rules:
   # performance
   - empty_count
