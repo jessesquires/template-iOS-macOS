@@ -50,12 +50,12 @@ shift
 echo "Running swiftlint $FOUND..."
 
 if [[ "$MODE" == "fix" ]]; then
-    swiftlint --fix --progress --config $CONFIG "$@" && swiftlint --config $CONFIG "$@"
+    swiftlint --fix --progress --config "$CONFIG" "$@" && swiftlint --config "$CONFIG" "$@"
 elif [[ "$MODE" == "analyze" ]]; then
     LOG="xcodebuild.log"
     echo "Running analyze..."
     xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
-    swiftlint analyze --fix --progress --format --strict --config $CONFIG --compiler-log-path $LOG "$@"
+    swiftlint analyze --fix --progress --format --strict --config "$CONFIG" --compiler-log-path $LOG "$@"
     rm $LOG
 fi
 
