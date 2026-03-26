@@ -32,6 +32,7 @@ fi
 
 PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
+DEST="DEST"
 
 VERSION="0.63.2"
 FOUND=$(swiftlint version)
@@ -55,7 +56,7 @@ elif [[ "$MODE" == "analyze" ]]; then
     LOG=$(mktemp -t xcodebuild.log.XXXXXX)
     trap '[[ -n "$LOG" && -f "$LOG" ]] && rm -f -- "$LOG"' EXIT
     echo "Running analyze..."
-    xcodebuild -scheme "$SCHEME" -project "$PROJECT" clean build-for-testing >"$LOG" 2>&1
+    xcodebuild clean build-for-testing -scheme "$SCHEME" -project "$PROJECT" -destination "$DEST" > "$LOG"
     swiftlint analyze --fix --progress --format --strict --config "$CONFIG" --compiler-log-path "$LOG" "$@"
 fi
 
