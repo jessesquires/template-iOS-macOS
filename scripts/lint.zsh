@@ -39,7 +39,7 @@ CONFIG="./.swiftlint.yml"
 
 MODE=$1
 
-if [[ -z "$MODE" || ("$MODE" != "fix" && "$MODE" != "analyze") ]]; then
+if [[ -z "$MODE" ]] || [[ "$MODE" != "fix" && "$MODE" != "analyze" ]]; then
     echo "Error: invalid arguments."
     echo "Usage: $0 <fix|analyze> [swiftlint options...]"
     exit 1
@@ -52,11 +52,11 @@ echo "Running swiftlint $FOUND..."
 if [[ "$MODE" == "fix" ]]; then
     swiftlint --fix --progress --config "$CONFIG" "$@" && swiftlint --config "$CONFIG" "$@"
 elif [[ "$MODE" == "analyze" ]]; then
-    LOG="xcodebuild.log"
+    LOG=$(mktemp -t xcodebuild.log.XXXXXX)
+    trap '[[ -n "$LOG" && -f "$LOG" ]] && rm -f -- "$LOG"' EXIT
     echo "Running analyze..."
-    xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
-    swiftlint analyze --fix --progress --format --strict --config "$CONFIG" --compiler-log-path $LOG "$@"
-    rm $LOG
+    xcodebuild -scheme "$SCHEME" -project "$PROJECT" clean build-for-testing >"$LOG" 2>&1
+    swiftlint analyze --fix --progress --format --strict --config "$CONFIG" --compiler-log-path "$LOG" "$@"
 fi
 
 if [ $FOUND != $VERSION ]; then
