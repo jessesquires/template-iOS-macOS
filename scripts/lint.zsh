@@ -37,38 +37,27 @@ VERSION="0.63.2"
 FOUND=$(swiftlint version)
 CONFIG="./.swiftlint.yml"
 
-echo "Running swiftlint..."
-echo ""
+MODE=$1
 
-# no arguments, just lint without fixing
-if [[ $# -eq 0 ]]; then
-    swiftlint --config $CONFIG
-    echo ""
+if [[ -z "$MODE" || ("$MODE" != "fix" && "$MODE" != "analyze") ]]; then
+    echo "Error: invalid arguments."
+    echo "Usage: $0 <fix|analyze> [swiftlint options...]"
+    exit 1
 fi
 
-for argval in "$@"
-do
-    # run --fix
-    if [[ "$argval" == "fix" ]]; then
-        echo "Auto-correcting lint errors..."
-        echo ""
-        swiftlint --fix --progress --config $CONFIG && swiftlint --config $CONFIG
-        echo ""
-    # run analyze
-    elif [[ "$argval" == "analyze" ]]; then
-        LOG="xcodebuild.log"
-        echo "Running anaylze..."
-        echo ""
-        xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
-        swiftlint analyze --fix --progress --format --strict --config $CONFIG --compiler-log-path $LOG
-        rm $LOG
-        echo ""
-    else
-        echo "Error: invalid arguments."
-        echo "Usage: $0 [fix] [analyze]"
-        echo ""
-    fi
-done
+shift
+
+echo "Running swiftlint $FOUND..."
+
+if [[ "$MODE" == "fix" ]]; then
+    swiftlint --fix --progress --config $CONFIG "$@" && swiftlint --config $CONFIG "$@"
+elif [[ "$MODE" == "analyze" ]]; then
+    LOG="xcodebuild.log"
+    echo "Running analyze..."
+    xcodebuild -scheme $SCHEME -project $PROJECT clean build-for-testing > $LOG
+    swiftlint analyze --fix --progress --format --strict --config $CONFIG --compiler-log-path $LOG "$@"
+    rm $LOG
+fi
 
 if [ $FOUND != $VERSION ]; then
     echo "
