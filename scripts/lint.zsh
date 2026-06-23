@@ -34,7 +34,7 @@ PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
 DEST="DEST"
 
-VERSION="0.63.2"
+VERSION="0.64.1"
 FOUND=$(swiftlint version)
 CONFIG="./.swiftlint.yml"
 
