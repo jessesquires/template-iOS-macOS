@@ -17,6 +17,7 @@ if [[ "${GITHUB_ACTIONS}" ]]; then
     exit 0
 fi
 
+VERSION="0.65.0"
 LINK="https://github.com/realm/SwiftLint"
 INSTALL="brew install swiftlint"
 
@@ -34,7 +35,6 @@ PROJECT="PROJECT.xcodeproj"
 SCHEME="SCHEME"
 DEST="DEST"
 
-VERSION="0.64.1"
 FOUND=$(swiftlint version)
 CONFIG="./.swiftlint.yml"
 
