@@ -12,14 +12,21 @@
 set -e
 export PATH="$PATH:/opt/homebrew/bin"
 
+VERSION="0.65.1"
+
+PROJECT="PROJECT.xcodeproj"
+SCHEME="SCHEME"
+DEST="DEST"
+
+FOUND=$(swiftlint version)
+CONFIG="./.swiftlint.yml"
+LINK="https://github.com/realm/SwiftLint"
+INSTALL="brew install swiftlint"
+
 if [[ "${GITHUB_ACTIONS}" ]]; then
     # ignore on GitHub Actions
     exit 0
 fi
-
-VERSION="0.65.0"
-LINK="https://github.com/realm/SwiftLint"
-INSTALL="brew install swiftlint"
 
 if ! which swiftlint >/dev/null; then
     echo "
@@ -30,13 +37,6 @@ if ! which swiftlint >/dev/null; then
     "
     exit 0
 fi
-
-PROJECT="PROJECT.xcodeproj"
-SCHEME="SCHEME"
-DEST="DEST"
-
-FOUND=$(swiftlint version)
-CONFIG="./.swiftlint.yml"
 
 MODE=$1
 
